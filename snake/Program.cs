@@ -31,8 +31,8 @@ namespace snake
         {
             configuracao();
             Console.Write("Press any key to start.");
-            Console.ReadKey();    
-            
+            Console.ReadKey(true);
+
             IniciaJogo();
 
             Console.ReadKey();
@@ -49,6 +49,14 @@ namespace snake
         }
 
         public static void IniciaJogo() {
+            //Mensagem inicio
+            Console.Clear();
+            Console.CursorTop = 7;
+            Console.CursorLeft = 11;
+            Console.WriteLine("__________Aguarde__________");
+            TocarStarWars();
+
+
             // Inicia o jogo
             Console.Clear();
             PosicionaMaca();
@@ -61,17 +69,25 @@ namespace snake
 
             while (!VericaLimiteCampo(xIniCobra.FirstOrDefault(), yIniCobra.FirstOrDefault()))
             {
-                tecla = Console.ReadKey(true);
+                var pressionou = Console.ReadKey(true);
+                if (pressionou.Key == ConsoleKey.RightArrow ||
+                    pressionou.Key == ConsoleKey.LeftArrow ||
+                    pressionou.Key == ConsoleKey.UpArrow ||
+                    pressionou.Key == ConsoleKey.DownArrow)
+                {
+
+                    tecla = pressionou;
+                }
             }
             
             Console.Clear();
             Console.CursorTop = 7;
             Console.CursorLeft = 11;
             Console.WriteLine("******** Game Over **********");
-            Console.Beep(6000,200);
-            Console.Beep(4000,200);
-            Console.Beep(4000,500);
+
+            TocarSuperMario();
         }
+
         // Thread
         static void Movimento() {
             while (!VericaLimiteCampo(xIniCobra.FirstOrDefault(), yIniCobra.FirstOrDefault()))
@@ -82,7 +98,7 @@ namespace snake
                 Console.CursorLeft = 0;
                 Console.Write("Maças: " + qtd);
 
-                Thread.Sleep(100);
+                Thread.Sleep(70);
             }
         }
 
@@ -98,7 +114,6 @@ namespace snake
             return false;
         }
         
-
         public static bool VericaLimiteCampo(int x, int y){
             if (x == BDCIMA || x == BDBAIXO || y == BDESQUERDA ||y == BDDIREITA)
             {
@@ -110,9 +125,6 @@ namespace snake
 
         public static void MoveCobra(int x, int y, ConsoleKeyInfo tecla)
         {
-            Console.Clear();
-         
-            var pegou = VerificaSePegouMaca(xIniCobra.FirstOrDefault(), yIniCobra.FirstOrDefault());
             
             if (tecla.Key == ConsoleKey.LeftArrow)
             {
@@ -132,9 +144,16 @@ namespace snake
             else if (tecla.Key == ConsoleKey.DownArrow)
             {
                 xIniCobra.Insert(0, x + 1);
-                yIniCobra.Insert(0, y);        
+                yIniCobra.Insert(0, y);
             }
-            
+            else {
+                return;
+            }
+
+            Console.Clear();
+
+            var pegou = VerificaSePegouMaca(xIniCobra.FirstOrDefault(), yIniCobra.FirstOrDefault());
+
             if (!pegou)
             {
                 xIniCobra.Remove(xIniCobra.Last());
@@ -143,7 +162,6 @@ namespace snake
 
             PosicionaMaca(xMaca, yMaca);
             MovimentaCobra();
-                
         }
         
 
@@ -189,5 +207,59 @@ namespace snake
                 }
             }
         }
+
+        private static void TocarStarWars()
+        {
+            Console.Beep(440, 500);
+            Console.Beep(440, 500);
+            Console.Beep(440, 500);
+            Console.Beep(349, 350);
+            Console.Beep(523, 150);
+            Console.Beep(440, 500);
+            Console.Beep(349, 350);
+            Console.Beep(523, 150);
+            Console.Beep(440, 1000);
+            Console.Beep(659, 500);
+            Console.Beep(659, 500);
+            Console.Beep(659, 500);
+            Console.Beep(698, 350);
+            Console.Beep(523, 150);
+            Console.Beep(415, 500);
+            Console.Beep(349, 350);
+            Console.Beep(523, 150);
+            Console.Beep(440, 1000);
+        }
+
+        public static void TocarSuperMario()
+        {
+            while (true)
+            {
+                Console.Beep(659, 250);
+                Console.Beep(659, 250);
+                Console.Beep(659, 300);
+                Console.Beep(523, 250);
+                Console.Beep(659, 250);
+                Console.Beep(784, 300);
+                Console.Beep(392, 300);
+                Console.Beep(523, 275);
+                Console.Beep(392, 275);
+                Console.Beep(330, 275);
+                Console.Beep(440, 250);
+                Console.Beep(494, 250);
+                Console.Beep(466, 275);
+                Console.Beep(440, 275);
+                Console.Beep(392, 275);
+                Console.Beep(659, 250);
+                Console.Beep(784, 250);
+                Console.Beep(880, 275);
+                Console.Beep(698, 275);
+                Console.Beep(784, 225);
+                Console.Beep(659, 250);
+                Console.Beep(523, 250);
+                Console.Beep(587, 225);
+                Console.Beep(494, 225);
+            }
+        }
+
     }
 }
