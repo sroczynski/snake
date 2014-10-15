@@ -63,26 +63,26 @@ namespace snake
             {
                 tecla = Console.ReadKey(true);
             }
-
+            
+            Console.Clear();
             Console.CursorTop = 7;
             Console.CursorLeft = 11;
             Console.WriteLine("******** Game Over **********");
-            Console.Beep(1500,1000);
+            Console.Beep(6000,200);
+            Console.Beep(4000,200);
+            Console.Beep(4000,500);
         }
-
+        // Thread
         static void Movimento() {
-            while (true)
+            while (!VericaLimiteCampo(xIniCobra.FirstOrDefault(), yIniCobra.FirstOrDefault()))
             {
-                while (!VericaLimiteCampo(xIniCobra.FirstOrDefault(), yIniCobra.FirstOrDefault()))
-                {
-                    MoveCobra(xIniCobra.FirstOrDefault(), yIniCobra.FirstOrDefault(), tecla);
+                MoveCobra(xIniCobra.FirstOrDefault(), yIniCobra.FirstOrDefault(), tecla);
 
-                    Console.CursorTop = 0;
-                    Console.CursorLeft = 0;
-                    Console.Write("Maças: " + qtd);
+                Console.CursorTop = 0;
+                Console.CursorLeft = 0;
+                Console.Write("Maças: " + qtd);
 
-                    Thread.Sleep(100);
-                }
+                Thread.Sleep(100);
             }
         }
 
@@ -90,6 +90,7 @@ namespace snake
         {
             if (x == xMaca && y == yMaca)
             {
+                Console.Beep(3000, 30);
                 PosicionaMaca();
                 qtd++;
                 return true;
@@ -141,23 +142,13 @@ namespace snake
             }
 
             PosicionaMaca(xMaca, yMaca);
-            
-            
-            
-            for (int i = 0; i <= qtd; i++)
-            {
-                if (!VericaLimiteCampo(xIniCobra[i], yIniCobra[i]))
-                {
-                    Console.CursorTop = xIniCobra[i];
-                    Console.CursorLeft = yIniCobra[i];
-                    Console.WriteLine(corpo);
-                }
-            }    
+            MovimentaCobra();
+                
         }
         
 
         /// <summary>
-        /// Posicionamento inicio de jogo
+        /// Posicionamento e movimentos
         /// </summary>
         public static void PosicionaMaca(int x, int y)
         {
@@ -185,6 +176,18 @@ namespace snake
             Console.CursorLeft = 5;
 
             Console.WriteLine(corpo);
+        }
+        public static void MovimentaCobra()
+        {
+            for (int i = 0; i <= qtd; i++)
+            {
+                if (!VericaLimiteCampo(xIniCobra[i], yIniCobra[i]))
+                {
+                    Console.CursorTop = xIniCobra[i];
+                    Console.CursorLeft = yIniCobra[i];
+                    Console.WriteLine(corpo);
+                }
+            }
         }
     }
 }
