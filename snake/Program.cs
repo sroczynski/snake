@@ -210,56 +210,38 @@ namespace snake
 
         private static void TocarStarWars()
         {
-            Console.Beep(440, 500);
-            Console.Beep(440, 500);
-            Console.Beep(440, 500);
-            Console.Beep(349, 350);
-            Console.Beep(523, 150);
-            Console.Beep(440, 500);
-            Console.Beep(349, 350);
-            Console.Beep(523, 150);
-            Console.Beep(440, 1000);
-            Console.Beep(659, 500);
-            Console.Beep(659, 500);
-            Console.Beep(659, 500);
-            Console.Beep(698, 350);
-            Console.Beep(523, 150);
-            Console.Beep(415, 500);
-            Console.Beep(349, 350);
-            Console.Beep(523, 150);
-            Console.Beep(440, 1000);
-        }
+            /*PlayMusic[] beeps = new PlayMusic[] { 
+                new PlayMusic(440, 500),
+                new PlayMusic(440, 500),
+                new PlayMusic(440, 500),
+                new PlayMusic(349, 350),
+                new PlayMusic(523, 150),
+                new PlayMusic(440, 500),
+                new PlayMusic(349, 350),
+                new PlayMusic(523, 150),
+                new PlayMusic(440, 1000),
+                new PlayMusic(659, 500),
+                new PlayMusic(659, 500),
+                new PlayMusic(659, 500),
+                new PlayMusic(698, 350),
+                new PlayMusic(523, 150),
+                new PlayMusic(415, 500),
+                new PlayMusic(349, 350),
+                new PlayMusic(523, 150),
+                new PlayMusic(440, 1000)
+            };
 
-        public static void TocarSuperMario()
-        {
-            while (true)
+            foreach (var item in beeps)
             {
-                Console.Beep(659, 250);
-                Console.Beep(659, 250);
-                Console.Beep(659, 300);
-                Console.Beep(523, 250);
-                Console.Beep(659, 250);
-                Console.Beep(784, 300);
-                Console.Beep(392, 300);
-                Console.Beep(523, 275);
-                Console.Beep(392, 275);
-                Console.Beep(330, 275);
-                Console.Beep(440, 250);
-                Console.Beep(494, 250);
-                Console.Beep(466, 275);
-                Console.Beep(440, 275);
-                Console.Beep(392, 275);
-                Console.Beep(659, 250);
-                Console.Beep(784, 250);
-                Console.Beep(880, 275);
-                Console.Beep(698, 275);
-                Console.Beep(784, 225);
-                Console.Beep(659, 250);
-                Console.Beep(523, 250);
-                Console.Beep(587, 225);
-                Console.Beep(494, 225);
-            }
+                Console.Beep(item.Frequency, item.Duration);
+            }*/
+
         }
 
+        private static void TocarSuperMario()
+        {
+            snake.Music.MarioSong a = new Music.MarioSong();
+            a.Play();
+        }
     }
 }
