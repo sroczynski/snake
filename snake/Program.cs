@@ -101,6 +101,7 @@ namespace snake
         public static bool VericaLimiteCampo(int x, int y){
             if (x == BDCIMA || x == BDBAIXO || y == BDESQUERDA ||y == BDDIREITA)
             {
+                Thread.Sleep(0);
                 return true;
             }
             return false;
