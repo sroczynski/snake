@@ -20,8 +20,8 @@ namespace snake
         public static int xMaca = 0;
         public static int yMaca = 0;
 
-        public static List<int> xIniCobra = new List<int>();
-        public static List<int> yIniCobra = new List<int>();
+        public static List<int> xCobra = new List<int>();
+        public static List<int> yCobra = new List<int>();
 
         public static int qtd = 0;
 
@@ -66,7 +66,7 @@ namespace snake
             Thread t = new Thread(Movimento);
             t.Start();
 
-            while (!VericaLimiteCampo(xIniCobra.FirstOrDefault(), yIniCobra.FirstOrDefault()))
+            while (!VericaLimiteCampo(xCobra.FirstOrDefault(), yCobra.FirstOrDefault()))
             {
                 var pressionou = Console.ReadKey(true);
                 if (pressionou.Key == ConsoleKey.RightArrow ||
@@ -89,9 +89,9 @@ namespace snake
 
         // Thread
         static void Movimento() {
-            while (!VericaLimiteCampo(xIniCobra.FirstOrDefault(), yIniCobra.FirstOrDefault()))
+            while (!VericaLimiteCampo(xCobra.FirstOrDefault(), yCobra.FirstOrDefault()))
             {
-                MoveCobra(xIniCobra.FirstOrDefault(), yIniCobra.FirstOrDefault(), tecla);
+                MoveCobra(xCobra.FirstOrDefault(), yCobra.FirstOrDefault(), tecla);
 
                 Console.CursorTop = 0;
                 Console.CursorLeft = 0;
@@ -127,23 +127,23 @@ namespace snake
             
             if (tecla.Key == ConsoleKey.LeftArrow)
             {
-                xIniCobra.Insert(0, x);     
-                yIniCobra.Insert(0, y - 1);        
+                xCobra.Insert(0, x);     
+                yCobra.Insert(0, y - 1);        
             }
             else if (tecla.Key == ConsoleKey.RightArrow)
             {
-                xIniCobra.Insert(0, x);
-                yIniCobra.Insert(0, y + 1);        
+                xCobra.Insert(0, x);
+                yCobra.Insert(0, y + 1);        
             }
             else if (tecla.Key == ConsoleKey.UpArrow)
             {
-                xIniCobra.Insert(0, x - 1);
-                yIniCobra.Insert(0, y);        
+                xCobra.Insert(0, x - 1);
+                yCobra.Insert(0, y);        
             }
             else if (tecla.Key == ConsoleKey.DownArrow)
             {
-                xIniCobra.Insert(0, x + 1);
-                yIniCobra.Insert(0, y);
+                xCobra.Insert(0, x + 1);
+                yCobra.Insert(0, y);
             }
             else {
                 return;
@@ -151,19 +151,33 @@ namespace snake
 
             Console.Clear();
 
-            var pegou = VerificaSePegouMaca(xIniCobra.FirstOrDefault(), yIniCobra.FirstOrDefault());
+            var pegou = VerificaSePegouMaca(xCobra.FirstOrDefault(), yCobra.FirstOrDefault());
 
             if (!pegou)
             {
-                xIniCobra.RemoveAt(xIniCobra.Count - 1);
-                yIniCobra.RemoveAt(yIniCobra.Count() - 1);
+                xCobra.RemoveAt(xCobra.Count - 1);
+                yCobra.RemoveAt(yCobra.Count() - 1);
             }
 
             PosicionaMaca(xMaca, yMaca);
             MovimentaCobra();
         }
+        /// <summary>
+        /// Movimenta toda a cobra de acordo com as posições definidas nas listas
+        /// </summary>
+        public static void MovimentaCobra()
+        {
+            for (int i = 0; i <= qtd; i++)
+            {
+                if (!VericaLimiteCampo(xCobra[i], yCobra[i]))
+                {
+                    Console.CursorTop = xCobra[i];
+                    Console.CursorLeft = yCobra[i];
+                    Console.WriteLine(corpo);
+                }
+            }
+        }
         
-
         /// <summary>
         /// Posicionamento e movimentos
         /// </summary>
@@ -187,26 +201,14 @@ namespace snake
 
         public static void PosicionaCobra()
         {
-            xIniCobra = new List<int>() {5};
-            yIniCobra = new List<int>() {5};
+            xCobra = new List<int>() {5};
+            yCobra = new List<int>() {5};
             Console.CursorTop = 5;
             Console.CursorLeft = 5;
 
             Console.WriteLine(corpo);
         }
-        public static void MovimentaCobra()
-        {
-            for (int i = 0; i <= qtd; i++)
-            {
-                if (!VericaLimiteCampo(xIniCobra[i], yIniCobra[i]))
-                {
-                    Console.CursorTop = xIniCobra[i];
-                    Console.CursorLeft = yIniCobra[i];
-                    Console.WriteLine(corpo);
-                }
-            }
-        }
-
+        
         private static void TocarStarWars()
         {
             Console.Beep(440, 500);
