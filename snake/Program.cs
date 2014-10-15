@@ -56,7 +56,6 @@ namespace snake
             Console.WriteLine("__________Aguarde__________");
             TocarStarWars();
 
-
             // Inicia o jogo
             Console.Clear();
             PosicionaMaca();
@@ -156,8 +155,8 @@ namespace snake
 
             if (!pegou)
             {
-                xIniCobra.Remove(xIniCobra.Last());
-                yIniCobra.Remove(yIniCobra.Last());
+                xIniCobra.RemoveAt(xIniCobra.Count - 1);
+                yIniCobra.RemoveAt(yIniCobra.Count() - 1);
             }
 
             PosicionaMaca(xMaca, yMaca);
@@ -230,7 +229,7 @@ namespace snake
             Console.Beep(440, 1000);
         }
 
-        public static void TocarSuperMario()
+        private static void TocarSuperMario()
         {
             while (true)
             {
