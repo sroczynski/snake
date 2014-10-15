@@ -29,7 +29,6 @@ namespace snake
         
         static void Main()
         {
-
             configuracao();
             Console.Write("Press any key to start.");
             Console.ReadKey();    
@@ -57,7 +56,7 @@ namespace snake
             tecla = new ConsoleKeyInfo(' ', ConsoleKey.RightArrow, false, false, false);
 
             //Inicia thread que movimenta cobra
-            Thread t = new Thread(alpha);
+            Thread t = new Thread(Movimento);
             t.Start();
 
             while (!VericaLimiteCampo(xIniCobra.FirstOrDefault(), yIniCobra.FirstOrDefault()))
@@ -71,7 +70,7 @@ namespace snake
             Console.Beep(1500,1000);
         }
 
-        static void alpha() {
+        static void Movimento() {
             while (true)
             {
                 while (!VericaLimiteCampo(xIniCobra.FirstOrDefault(), yIniCobra.FirstOrDefault()))
@@ -186,7 +185,5 @@ namespace snake
 
             Console.WriteLine(corpo);
         }
-
     }
-    
 }
