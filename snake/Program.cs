@@ -9,22 +9,13 @@ namespace snake
 {
     class Program
     {
-        public const int BDCIMA = 0;
-        public const int BDESQUERDA = 0;
-        public const int BDDIREITA = 49;
-        public const int BDBAIXO = 24;
+        public const int BDCIMA = 0, BDESQUERDA = 0, BDDIREITA = 49, BDBAIXO = 24;
+        public const string MACA = "*", corpo = "■";
+        public static int xMaca = 0, yMaca = 0, qtd = 0;
         
-        public const string MACA = "*";
-        public const string corpo = "■";
-
-        public static int xMaca = 0;
-        public static int yMaca = 0;
-
         public static List<int> xIniCobra = new List<int>();
         public static List<int> yIniCobra = new List<int>();
-
-        public static int qtd = 0;
-
+        
         public static ConsoleKeyInfo tecla;
         
         static void Main()
@@ -34,8 +25,6 @@ namespace snake
             Console.ReadKey(true);
 
             IniciaJogo();
-
-            Console.ReadKey();
         }
 
         public static void configuracao() {
