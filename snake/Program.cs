@@ -9,6 +9,8 @@ namespace snake
 {
     class Program
     {
+        private static ConsoleKey lastKey { get; set; }
+
         public const int BDCIMA = 0, BDESQUERDA = 0, BDDIREITA = 49, BDBAIXO = 24;
         public const string MACA = "*", corpo = "■";
         public static int xMaca = 0, yMaca = 0, qtd = 0;
@@ -58,13 +60,13 @@ namespace snake
             while (!VericaLimiteCampo(xIniCobra.FirstOrDefault(), yIniCobra.FirstOrDefault()))
             {
                 var pressionou = Console.ReadKey(true);
-                if (pressionou.Key == ConsoleKey.RightArrow ||
-                    pressionou.Key == ConsoleKey.LeftArrow ||
-                    pressionou.Key == ConsoleKey.UpArrow ||
-                    pressionou.Key == ConsoleKey.DownArrow)
+                if ((pressionou.Key == ConsoleKey.RightArrow && lastKey != ConsoleKey.LeftArrow) ||
+                    (pressionou.Key == ConsoleKey.LeftArrow && lastKey != ConsoleKey.RightArrow) ||
+                    (pressionou.Key == ConsoleKey.UpArrow && lastKey != ConsoleKey.DownArrow) ||
+                    (pressionou.Key == ConsoleKey.DownArrow && lastKey != ConsoleKey.UpArrow))
                 {
-
                     tecla = pressionou;
+                    lastKey = tecla.Key;
                 }
             }
             
@@ -113,28 +115,28 @@ namespace snake
 
         public static void MoveCobra(int x, int y, ConsoleKeyInfo tecla)
         {
-            
             if (tecla.Key == ConsoleKey.LeftArrow)
             {
-                xIniCobra.Insert(0, x);     
-                yIniCobra.Insert(0, y - 1);        
+                xIniCobra.Insert(0, x);
+                yIniCobra.Insert(0, y - 1);
             }
             else if (tecla.Key == ConsoleKey.RightArrow)
             {
                 xIniCobra.Insert(0, x);
-                yIniCobra.Insert(0, y + 1);        
+                yIniCobra.Insert(0, y + 1);
             }
             else if (tecla.Key == ConsoleKey.UpArrow)
             {
                 xIniCobra.Insert(0, x - 1);
-                yIniCobra.Insert(0, y);        
+                yIniCobra.Insert(0, y);
             }
             else if (tecla.Key == ConsoleKey.DownArrow)
             {
                 xIniCobra.Insert(0, x + 1);
                 yIniCobra.Insert(0, y);
             }
-            else {
+            else
+            {                
                 return;
             }
 
@@ -228,7 +230,7 @@ namespace snake
 
         private static void TocarSuperMario()
         {
-            snake.Music.MarioSong a = new Music.MarioSong();
+            snake.Music.Songs.MarioSong a = new snake.Music.Songs.MarioSong();
             a.Play();
         }
     }

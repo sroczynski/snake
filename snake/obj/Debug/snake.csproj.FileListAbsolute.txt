@@ -10,3 +10,9 @@ D:\App\snake\snake\obj\Debug\snake.pdb
 D:\App\snake\snake\obj\Debug\snake.csprojResolveAssemblyReference.cache
 D:\App\snake\snake\bin\Debug\snake.exe
 D:\App\snake\snake\bin\Debug\snake.pdb
+D:\Projetos\snake-n\snake\snake\bin\Debug\snake.exe.config
+D:\Projetos\snake-n\snake\snake\obj\Debug\snake.exe
+D:\Projetos\snake-n\snake\snake\obj\Debug\snake.pdb
+D:\Projetos\snake-n\snake\snake\bin\Debug\snake.exe
+D:\Projetos\snake-n\snake\snake\bin\Debug\snake.pdb
+D:\Projetos\snake-n\snake\snake\obj\Debug\snake.csprojResolveAssemblyReference.cache

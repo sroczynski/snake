@@ -41,9 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Music\MarioSong.cs" />
+    <Compile Include="Music\BaseMusicPlayer.cs" />
     <Compile Include="Music\MusicBeep.cs" />
-    <Compile Include="Music\MusicPlayer.cs" />
+    <Compile Include="Music\Songs\MarioSong.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
